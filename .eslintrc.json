@@ -19,5 +19,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+      "no-underscore-dangle": "off",
+      "camelcase": "off",
+      "no-console": "off"
+
     }
 }
