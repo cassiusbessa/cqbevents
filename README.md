@@ -1,7 +1,7 @@
 
 # MB Labs Events
 
-MB Labs Events é uma aplicação back-end com o objetivo de gerir eventos permitindo que os usuários busquem eventos e comprem ingressos para os mesmos.
+MB Labs Events é uma aplicação back-end com o objetivo de permitir a empresas gerir eventos e permitir que os usuários busquem eventos e comprem ingressos para os mesmos.
 
 
 
@@ -24,7 +24,7 @@ MB Labs Events é uma aplicação back-end com o objetivo de gerir eventos permi
 
 ## Entidades
 
-#### Organizadores
+#### Producers
 
 | Campo         |  Descrição                                          |
 | :----------   | :----------------------------------                 |
@@ -39,6 +39,7 @@ MB Labs Events é uma aplicação back-end com o objetivo de gerir eventos permi
 | Campo         |  Descrição                                          |
 | :----------   | :----------------------------------                 |
 | id            | **Default**. Identificador gerado no ato do cadastro |
+| producer            | **Default**. Identificador do produtor         |
 | title         | **Obrigatório**. Título do evento                   |
 | attractions   | **Obrigatório**. Conjunto que definirá o que terá e em que data            |
 | tickets       | **Obrigatório**. Cojunto contendo tipos de ingresso, preços e data de venda   |
@@ -67,8 +68,28 @@ MB Labs Events é uma aplicação back-end com o objetivo de gerir eventos permi
 | title          | **Obrigatório**. Título do ingressos               |
 | startDate     | **Obrigatório**. Data de Início das vendas          |
 | endDate       | **Obrigatório**. Data de fim das vendas             |
+| quantity      | **Obrigatório**. Quantidade total de ingressos      |
+| solds         | **Default**. Inicialmente 0. Quantidade de vendas   |
 | description   |  Livre descrição                                    |
-| price         |  Imagem da atração                                  |
+| price         |  **Obrigatório** Preço do ingresso                                  |
+
+
+#### Address 
+
+| Campo         |  Descrição                                          |
+| :----------   | :----------------------------------                 |
+| title         | Título do local do evento                           |
+| cep           | **Obrigatório**. CEP do endereço do evento          |
+| state         | **Obrigatório**. Estado do endereço da venda        |
+| city          | **Obrigatório**. Data de fim das vendas             |
+| street        | **Obrigatório**. Quantidade total de ingressos      |
+| number        | **Default**. Inicialmente 0. Quantidade de vendas   |
+| complement    |  Livre descrição                                    |
+
+
+
+
+
 
 ## Stacks utilizadas
 
