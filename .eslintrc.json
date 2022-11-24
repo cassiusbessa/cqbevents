@@ -21,7 +21,9 @@
     "rules": {
       "no-underscore-dangle": "off",
       "camelcase": "off",
-      "no-console": "off"
+      "no-console": "off",
+      "import/extensions": "off",
+      "import/no-unresolved": "off"
 
     }
 }
