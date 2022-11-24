@@ -9,6 +9,8 @@ export const IEventsZodSchema = z.object({
     .min(3, { message: 'title must be at least 3 characters' }),
   producer: z.string({ required_error: 'producer is required',
     invalid_type_error: 'producer must be a string' }),
+  genre: z.array(z.string({ required_error: 'genre is required',
+    invalid_type_error: 'genre must be a string' })),
   attractions: z.array(IAttractionsZodSchema),
   tickets: z.array(ITicketsZodSchema),
   address: IAddressZodSchema,
