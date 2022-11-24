@@ -1,0 +1,19 @@
+{
+  "name": "mbevents",
+  "version": "1.0.0",
+  "description": "MB Labs Events é uma aplicação back-end com o objetivo de permitir a empresas gerir eventos e permitir que os usuários busquem eventos e comprem ingressos para os mesmos.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cassiusbessa/mbevents.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cassiusbessa/mbevents/issues"
+  },
+  "homepage": "https://github.com/cassiusbessa/mbevents#readme"
+}
