@@ -41,6 +41,7 @@ MB Labs Events é uma aplicação back-end com o objetivo de permitir a empresas
 | id            | **Default**. Identificador gerado no ato do cadastro |
 | producer            | **Default**. Identificador do produtor         |
 | title         | **Obrigatório**. Título do evento                   |
+| genre         | Conjunto que define o gênero do evento              |
 | attractions   | **Obrigatório**. Conjunto que definirá o que terá e em que data            |
 | tickets       | **Obrigatório**. Cojunto contendo tipos de ingresso, preços e data de venda   |
 | address       | **Obrigatório**. Endereço Público                   |
