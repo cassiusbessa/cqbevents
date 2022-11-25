@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const ITicketsZodSchema = z.object({
+export const ITicketZodSchema = z.object({
   title: z.string({ required_error: 'title is required',
     invalid_type_error: 'title must be a string' })
     .min(3, { message: 'title must be at least 3 characters' }),
@@ -17,4 +17,4 @@ export const ITicketsZodSchema = z.object({
   description: z.string().optional(),
 });
 
-export type ITickets = z.infer<typeof ITicketsZodSchema>;
+export type ITicket = z.infer<typeof ITicketZodSchema>;
