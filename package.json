@@ -17,12 +17,18 @@
   },
   "homepage": "https://github.com/cassiusbessa/mbevents#readme",
   "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
+    "@types/sinon": "^10.0.13",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
+    "chai": "^4.3.7",
     "eslint": "^8.28.0",
-    "eslint-config-trybe-backend": "^2.1.0"
+    "eslint-config-trybe-backend": "^2.1.0",
+    "sinon": "^14.0.2"
   },
   "dependencies": {
+    "mongoose": "^6.7.3",
     "zod": "^3.19.1"
   }
 }
