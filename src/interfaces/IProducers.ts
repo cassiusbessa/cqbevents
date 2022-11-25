@@ -12,4 +12,8 @@ export const IProducerZodSchema = z.object({
     .min(6, { message: 'password must be at least 6 characters' }),
 });
 
+export const IProducerZodSchemaUpdate = IProducerZodSchema.partial();
+
 export type IProducer = z.infer<typeof IProducerZodSchema>;
+
+export type IProducerUpdate = z.infer<typeof IProducerZodSchemaUpdate>;

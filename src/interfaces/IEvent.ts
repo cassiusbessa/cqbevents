@@ -24,4 +24,8 @@ export const IEventZodSchema = z.object({
     .optional(),
 });
 
+export const IEventZodSchemaUpdate = IEventZodSchema.deepPartial();
+
 export type IEvent = z.infer<typeof IEventZodSchema>;
+
+export type IEventUpdate = z.infer<typeof IEventZodSchemaUpdate>;

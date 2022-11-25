@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { IRepository } from '../interfaces';
 
-class Repository<T> implements IRepository<T> {
+class Repository<T, U> implements IRepository<T, U> {
   private _model:Model<T>;
 
   constructor(model:Model<T>) {
@@ -16,7 +16,7 @@ class Repository<T> implements IRepository<T> {
     return this._model.find({});
   }
 
-  public async update(_id:string, obj:Partial<T>):Promise<T | null> {
+  public async update(_id:string, obj: Partial<U>):Promise<T | null> {
     return this._model.findByIdAndUpdate(_id, obj, { new: true, __v: 0 });
   }
 
@@ -26,6 +26,10 @@ class Repository<T> implements IRepository<T> {
 
   public async delete(_id:string):Promise<T | null> {
     return this._model.findByIdAndDelete(_id);
+  }
+
+  public async search(query:any):Promise<Array<T>> {
+    return this._model.find(query);
   }
 }
 export default Repository;
