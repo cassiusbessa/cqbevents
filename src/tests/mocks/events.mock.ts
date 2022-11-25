@@ -1,12 +1,12 @@
-import { IEvents } from '../../interfaces/IEvents';
+import { IEvent } from '../../interfaces/IEvent';
 
-const mockEvent: IEvents & { _id: string } = {
-  title: 'Rock in Rio IX',
+const mockEvent: IEvent & { _id: string } = {
+  title: 'Rock in Rio X',
   image: 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Rock_in_Rio_-_Madrid_2012.jpg',
   producer: 'Rock in Rio',
   genre: ['Festival', 'Musical', 'Rock', 'Pop', 'Funk'],
   private: false,
-  description: 'Rock in Rio is a recurring music festival originating in Rio de Janeiro, Brazil. It has been held in Lisbon, Madrid, and Las Vegas in recent years, and is scheduled to return to Rio in 2019. The festival was first held in 1985 and has been held every two years since 2001. It is the largest music festival in the world, with 1.5 million people attending the 2013 festival in Rio de Janeiro.',
+  description: ' é um festival de música idealizado pelo empresário brasileiro Roberto Medina pela primeira vez em 1985. É reconhecido como um dos maiores festivais musicais do planeta. Foi originalmente organizado no Rio de Janeiro, de onde vem o nome.',
   attractions: [
     {
       title: 'Iron Maiden',
@@ -57,7 +57,7 @@ const mockEvent: IEvents & { _id: string } = {
     title: 'Parque Olímpico',
     cep: '22775-000',
     street: 'Avenida Embaixador Abelardo Bueno',
-    number: '3401',
+    number: 3401,
     state: 'RJ',
     city: 'Rio de Janeiro',
   },
