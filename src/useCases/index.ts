@@ -1,4 +1,5 @@
 import BaseCases from './BaseCases';
 import Validator from './Validator';
+import UserCases from './UserCases';
 
-export { BaseCases, Validator };
+export { BaseCases, Validator, UserCases };
