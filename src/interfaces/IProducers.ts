@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const IProducerZodSchema = z.object({
+  _id: z.string().optional(),
   email: z.string({ required_error: 'email is required',
     invalid_type_error: 'email must be a string' })
     .email({ message: 'email must be a valid email' }),
