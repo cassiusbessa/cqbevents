@@ -3,7 +3,7 @@ import { httpStatusCode, CtrlWrapper } from '../utils';
 import { BaseCases } from '../useCases';
 
 export default class BaseController<T, U> {
-  constructor(private useCase: BaseCases<T, U>) {
+  constructor(protected useCase: BaseCases<T, U>) {
     this.useCase = useCase;
   }
 
