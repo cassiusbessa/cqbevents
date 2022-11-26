@@ -12,7 +12,7 @@ const eventSchema = new Schema<IEvent>({
   image: { type: String, required: false },
   private: { type: Boolean, required: true, default: true },
   description: { type: String, required: false },
-}, { versionKey: false });
+}, { versionKey: false, timestamps: false });
 
 const Event = model<IEvent>('Event', eventSchema);
 

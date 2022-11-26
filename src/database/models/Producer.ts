@@ -5,7 +5,7 @@ const producerSchema = new Schema<IProducer>({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true },
-});
+}, { versionKey: false, timestamps: false });
 
 const Producer = model<IProducer>('Producer', producerSchema);
 
