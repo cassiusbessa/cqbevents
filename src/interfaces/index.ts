@@ -1,18 +1,21 @@
 import { IAddress, IAddressZodSchema } from './IAddress';
 import { IAttraction, IAttractionZodSchema } from './IAttraction';
-import { IEvent, IEventZodSchema } from './IEvent';
+import { IEvent, IEventZodSchema, IEventUpdate, IEventZodSchemaUpdate } from './IEvent';
 import { IProducer, IProducerUpdate, IProducerZodSchema, 
   IProducerZodSchemaUpdate } from './IProducers';
 import { ITicket, ITicketZodSchema } from './ITicket';
 import IRepository from './IRepository';
+import ITokenPayload from './ITokenPayload';
 
 export { 
   IAddress, 
   IAddressZodSchema, 
   IAttraction, 
   IAttractionZodSchema, 
-  IEvent, 
+  IEvent,
+  IEventUpdate, 
   IEventZodSchema, 
+  IEventZodSchemaUpdate,
   IProducer,
   IProducerUpdate, 
   IProducerZodSchema, 
@@ -20,4 +23,5 @@ export {
   ITicket, 
   ITicketZodSchema, 
   IRepository,
+  ITokenPayload,
 };

@@ -1,14 +1,21 @@
 import { IProducer, IProducerUpdate, 
-  IProducerZodSchema as PSchema, IProducerZodSchemaUpdate as PUSchema } from '../interfaces';
-import { Producer } from '../database/models';
+  IProducerZodSchema as PSchema, IProducerZodSchemaUpdate as PUSchema,
+  IEvent, IEventUpdate, IEventZodSchema as ESchema, IEventZodSchemaUpdate as EUSchema,
+} from '../interfaces';
+import { Producer, Event } from '../database/models';
 import { Repository } from '../database';
-import { BaseCases, Validator } from '../useCases';
-import { BaseController } from '../controllers';
+import { BaseCases, Validator, UserCases } from '../useCases';
+import { BaseController, UserController } from '../controllers';
+import { Jwt } from '../utils';
 
 const producerRepo = new Repository<IProducer, IProducerUpdate>(Producer);
 const producerValidator = new Validator<IProducer, IProducerUpdate>(PSchema, PUSchema);
-const producerCases = new BaseCases<IProducer, IProducerUpdate>(producerRepo, producerValidator);
-const producerController = new BaseController<IProducer, IProducerUpdate>(producerCases);
+const producerCases = new UserCases(producerRepo, producerValidator, new Jwt());
+const producerController = new UserController(producerCases);
 
-// eslint-disable-next-line import/prefer-default-export
-export { producerController };
+const eventRepo = new Repository<IEvent, IEventUpdate>(Event);
+const eventValidator = new Validator<IEvent, IEventUpdate>(ESchema, EUSchema);
+const eventCases = new BaseCases(eventRepo, eventValidator);
+const eventController = new BaseController<IEvent, IEventUpdate>(eventCases);
+
+export { producerController, eventController };

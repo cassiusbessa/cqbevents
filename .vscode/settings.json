@@ -1,0 +1,9 @@
+{
+  "conventionalCommits.scopes": [
+    "Utils",
+    "Interfaces",
+    "UseCases",
+    "Middleware",
+    "Routes"
+  ]
+}
