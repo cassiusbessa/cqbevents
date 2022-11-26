@@ -1,7 +1,6 @@
 /* eslint-disable class-methods-use-this */
-
 import { SomeZodObject } from 'zod';
-import { CustomError, httpStatusCode } from '../utils';
+import { CustomError, httpStatusCode, bcrypt } from '../utils';
 
 export default class Validator<T, U> {
   constructor(private schema: SomeZodObject, private updateSchema: SomeZodObject) {
@@ -14,6 +13,12 @@ export default class Validator<T, U> {
     if (!valid.success) {
       const message = valid.error.issues.map((issue) => issue.message).join(' | ');
       throw new CustomError(message, httpStatusCode.BAD_REQUEST);
+    }
+  };
+
+  public existing = (entity: T | null): void => {
+    if (entity) {
+      throw new CustomError('user or email already exists', httpStatusCode.CONFLICT);
     }
   };
 
@@ -45,6 +50,19 @@ export default class Validator<T, U> {
       if (!iterator) {
         throw new CustomError('Missing fields', httpStatusCode.BAD_REQUEST);
       }
+    }
+  }
+
+  public async passwordValidate(password: string, crypt: string): Promise<void> {
+    const comparePass = await bcrypt.comparePassword(password, crypt);
+    if (!comparePass) {
+      throw new CustomError('Password incorrect', httpStatusCode.UNAUTHORIZED);
+    }
+  }
+
+  public isOwner(actual: string, id: string): void {
+    if (actual.toString() !== id) {
+      throw new CustomError('Not authorized', httpStatusCode.UNAUTHORIZED);
     }
   }
 }
