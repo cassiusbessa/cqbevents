@@ -14,7 +14,7 @@ class Repository<T, U> implements IRepository<T, U> {
   }
 
   public async read(where: any):Promise<Array<T>> {
-    return this.model.find({ where });
+    return this.model.find(where);
   }
 
   public async update(_id:string, obj: Partial<U>):Promise<T | null> {
@@ -22,7 +22,7 @@ class Repository<T, U> implements IRepository<T, U> {
   }
 
   public async readOne(where:any):Promise<T | null> {
-    return this.model.findOne({ where });
+    return this.model.findOne(where);
   } 
 
   public async delete(_id:string):Promise<T | null> {
