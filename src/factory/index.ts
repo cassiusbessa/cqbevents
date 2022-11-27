@@ -1,11 +1,10 @@
 import { IProducer, IProducerUpdate, 
   IProducerZodSchema as PSchema, IProducerZodSchemaUpdate as PUSchema,
-  IEvent, IEventUpdate, IEventZodSchema as ESchema, IEventZodSchemaUpdate as EUSchema,
-} from '../interfaces';
+  IEvent, IEventUpdate } from '../interfaces';
 import { Producer, Event } from '../database/models';
 import { Repository } from '../database';
-import { BaseCases, Validator, UserCases } from '../useCases';
-import { BaseController, UserController } from '../controllers';
+import { Validator, UserCases, EventCases, EventValidator } from '../useCases';
+import { EventController, UserController } from '../controllers';
 import { Jwt } from '../utils';
 
 const producerRepo = new Repository<IProducer, IProducerUpdate>(Producer);
@@ -14,8 +13,8 @@ const producerCases = new UserCases(producerRepo, producerValidator, new Jwt());
 const producerController = new UserController(producerCases);
 
 const eventRepo = new Repository<IEvent, IEventUpdate>(Event);
-const eventValidator = new Validator<IEvent, IEventUpdate>(ESchema, EUSchema);
-const eventCases = new BaseCases(eventRepo, eventValidator);
-const eventController = new BaseController<IEvent, IEventUpdate>(eventCases);
+const eventValidator = new EventValidator();
+const eventCases = new EventCases(eventRepo, eventValidator, new Jwt());
+const eventController = new EventController(eventCases);
 
 export { producerController, eventController };
