@@ -4,10 +4,14 @@ export const ITicketZodSchema = z.object({
   title: z.string({ required_error: 'title is required',
     invalid_type_error: 'title must be a string' })
     .min(3, { message: 'title must be at least 3 characters' }),
-  startDate: z.date({ required_error: 'startDate is required',
-    invalid_type_error: 'startDate must be a date' }),
-  endDate: z.date({ required_error: 'endDate is required',
-    invalid_type_error: 'endDate must be a date' }),
+  startDate: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+  }, z.date({ required_error: 'startDate is required', 
+    invalid_type_error: 'startDate must be a date' })),
+  endDate: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+  }, z.date({ required_error: 'endDate is required', 
+    invalid_type_error: 'endDate must be a date' })),
   quantity: z.number({ required_error: 'quantity is required',
     invalid_type_error: 'quantity must be a number' }),
   solds: z.number({ required_error: 'solds is required',

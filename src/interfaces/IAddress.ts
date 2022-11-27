@@ -17,7 +17,7 @@ export const IAddressZodSchema = z.object({
     invalid_type_error: 'street must be a string' })
     .min(3, { message: 'street must be at least 3 characters' }),
   number: z.number({ required_error: 'number is required',
-    invalid_type_error: 'number must be a string' })
+    invalid_type_error: 'number must be a number' })
     .min(1, { message: 'number must be at least 1 characters' }),
   complement: z.string()
     .max(100, { message: 'complement must be at most 150 characters' })
