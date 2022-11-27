@@ -1,7 +1,7 @@
-import { IProducer, IProducerUpdate } from '../interfaces/IProducers';
-import { BaseCases, Validator } from '.';
-import { IRepository, ITokenPayload } from '../interfaces';
-import { bcrypt, Jwt } from '../utils';
+import { IProducer, IProducerUpdate } from '../../interfaces/IProducers';
+import { BaseCases, Validator } from '..';
+import { IRepository, ITokenPayload } from '../../interfaces';
+import { bcrypt, Jwt } from '../../utils';
 
 export default class UserCases extends BaseCases<IProducer, IProducerUpdate> {
   constructor(
@@ -12,7 +12,7 @@ export default class UserCases extends BaseCases<IProducer, IProducerUpdate> {
     super(repository, validator);
   }
 
-  public async register(entity: IProducer) {
+  public async create(entity: IProducer) {
     this.validator.validateFields([entity.username, entity.email, entity.password]);
     this.validator.create(entity);
     const found = await this.repository.find(entity.username, entity.email);
@@ -36,7 +36,8 @@ export default class UserCases extends BaseCases<IProducer, IProducerUpdate> {
   : Promise<IProducer | null> {
     this.validator.validateFields([id]);    
     this.validator.idValidate(id);
-    const actual = await this.repository.readOne(payload._id) as IProducer;
+    const actual = await this.repository.readOne({ email: payload.email }) as IProducer;
+    console.log(actual);
     this.validator.isOwner(actual._id as string, id);
     const found = await this.repository.find(entity.username as string, entity.email as string);
     this.validator.existing(found);
