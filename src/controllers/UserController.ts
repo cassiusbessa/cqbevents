@@ -9,12 +9,6 @@ export default class UserController extends BaseController<IProducer, IProducerU
     super(useCase);
   }
 
-  public register = CtrlWrapper(async (req: Request, res: Response) => {
-    const { body } = req;
-    const result = await this.useCase.register(body);
-    return res.status(httpStatusCode.CREATED).json(result);
-  });
-
   public login = CtrlWrapper(async (req: Request, res: Response) => {
     const { body } = req;
     const result = await this.useCase.login(body);

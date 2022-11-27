@@ -8,7 +8,7 @@ export default class BaseCases<T, U> {
     this.validator = validator;
   }
 
-  public async create(entity: T): Promise<T> {
+  public async create(entity: T): Promise<Partial<T>> {
     this.validator.create(entity);
     return this.repository.create(entity);
   }
