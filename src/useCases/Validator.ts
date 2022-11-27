@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable class-methods-use-this */
 import { SomeZodObject } from 'zod';
 import { CustomError, httpStatusCode, bcrypt } from '../utils';
@@ -18,7 +20,7 @@ export default class Validator<T, U> {
 
   public existing = (entity: T | null): void => {
     if (entity) {
-      throw new CustomError('user or email already exists', httpStatusCode.CONFLICT);
+      throw new CustomError('Already exists', httpStatusCode.CONFLICT);
     }
   };
 
@@ -43,9 +45,7 @@ export default class Validator<T, U> {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public validateFields(fieldes: Array<any>): void {
-    // eslint-disable-next-line no-restricted-syntax
     for (const iterator of fieldes) {
       if (!iterator) {
         throw new CustomError('Missing fields', httpStatusCode.BAD_REQUEST);
