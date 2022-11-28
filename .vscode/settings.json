@@ -4,6 +4,9 @@
     "Interfaces",
     "UseCases",
     "Middleware",
-    "Routes"
+    "Routes",
+    "Database",
+    "Repository",
+    "Controller"
   ]
 }

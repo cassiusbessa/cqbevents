@@ -8,6 +8,6 @@ const attractionSchema = new Schema<IAttraction>({
   local: { type: String, required: false },
   image: { type: String, required: false },
   description: { type: String, required: false },
-}, { versionKey: false });
+}, { versionKey: false, _id: false });
 
 export default attractionSchema;
