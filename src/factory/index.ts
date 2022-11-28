@@ -1,7 +1,7 @@
 import { IProducer, IProducerUpdate, 
   IProducerZodSchema as PSchema, IProducerZodSchemaUpdate as PUSchema,
-  IEvent, IEventUpdate } from '../interfaces';
-import { Producer, Event } from '../database/models';
+  IBuyTicketZodSchema } from '../interfaces';
+import { Producer } from '../database/models';
 import { EventRepo, Repository } from '../database';
 import { Validator, UserCases, EventCases, EventValidator } from '../useCases';
 import { EventController, UserController } from '../controllers';
@@ -13,7 +13,7 @@ const producerCases = new UserCases(producerRepo, producerValidator, new Jwt());
 const producerController = new UserController(producerCases);
 
 const eventRepo = new EventRepo();
-const eventValidator = new EventValidator();
+const eventValidator = new EventValidator(IBuyTicketZodSchema);
 const eventCases = new EventCases(eventRepo, eventValidator, new Jwt());
 const eventController = new EventController(eventCases);
 

@@ -21,4 +21,23 @@ export const ITicketZodSchema = z.object({
   description: z.string().optional(),
 });
 
+export const IBuyTicketZodSchema = z.object({
+  eventTitle: z.string({ required_error: 'eventTitle is required',
+    invalid_type_error: 'eventTitle must be a string' }),
+  ticketTitle: z.string({ required_error: 'ticketTitle is required',
+    invalid_type_error: 'ticketTitle must be a string' }),
+  quantity: z.number({ required_error: 'quantity is required',
+    invalid_type_error: 'quantity must be a number' }),
+});
+
+export interface ISale {
+  event: string;
+  total: number;
+  ticket: string;
+  quantity: number;
+  billing: string;
+}
+
 export type ITicket = z.infer<typeof ITicketZodSchema>;
+
+export type IBuyTicket = z.infer<typeof IBuyTicketZodSchema>;

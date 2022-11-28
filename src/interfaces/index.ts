@@ -3,7 +3,7 @@ import { IAttraction, IAttractionZodSchema } from './IAttraction';
 import { IEvent, IEventZodSchema, IEventUpdate, IEventZodSchemaUpdate } from './IEvent';
 import { IProducer, IProducerUpdate, IProducerZodSchema, 
   IProducerZodSchemaUpdate } from './IProducers';
-import { ITicket, ITicketZodSchema } from './ITicket';
+import { ITicket, ITicketZodSchema, IBuyTicket, IBuyTicketZodSchema, ISale } from './ITicket';
 import IRepository from './IRepository';
 import ITokenPayload from './ITokenPayload';
 
@@ -22,6 +22,9 @@ export {
   IProducerZodSchemaUpdate,
   ITicket, 
   ITicketZodSchema, 
+  IBuyTicket,
+  IBuyTicketZodSchema,
+  ISale,
   IRepository,
   ITokenPayload,
 };

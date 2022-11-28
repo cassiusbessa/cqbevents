@@ -1,5 +1,5 @@
 import Repository from './Repository';
-import { IEvent } from '../interfaces';
+import { IBuyTicket, IEvent } from '../interfaces';
 import { Event } from '../database/models';
 
 export default class EventRepo extends Repository<IEvent, IEvent> {
@@ -42,19 +42,30 @@ export default class EventRepo extends Repository<IEvent, IEvent> {
     return found;
   }
 
+  public async soldTickets(buy: IBuyTicket): Promise<any> {
+    const found = await this.model.findOneAndUpdate(
+      {
+        title: buy.eventTitle,
+        'tickets.title': buy.ticketTitle,
+      },
+      {
+        $inc: { 'tickets.$.solds': buy.quantity },
+      },
+      { new: true },
+    );
+    return found;
+  }
+
   public async attractionsDateSearch(date: string): Promise<Array<IEvent>> {
-    console.log('>>>>>', date);
+    const search = `${date}T23:59:59.000Z`;
+
     const found = await this.model.find({
-      $and: [
-        { attractions: { $elemMatch: { startDate: { $lte: new Date(date) } } } },
-        { attractions: { $elemMatch: { endDate: { $gte: new Date(date) } } } },
-      ],
-      // attractions: {
-      //   $elemMatch: {
-      //     startDate: { $lte: new Date(date) },
-      //     endDate: { $gte: new Date(date) },
-      //   },
-      // },
+      attractions: {
+        $elemMatch: {
+          startDate: { $lte: new Date(search) },
+          endDate: { $gte: new Date(date) },
+        },
+      },
       private: false,
     });
     return found;

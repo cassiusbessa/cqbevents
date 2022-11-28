@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { IEvent, ITokenPayload } from '../../interfaces';
+import { IBuyTicket, IEvent, ISale, ITokenPayload } from '../../interfaces';
 import { EventValidator } from '..';
 import { Jwt } from '../../utils';
 import EventAdapter from './EventAdapter';
@@ -18,7 +18,7 @@ export default class EventCases {
 
   public async create(event: IEvent, payload: ITokenPayload): Promise<IEvent> {
     this.validator.create(event);
-    const result = EventAdapter.Serialize(event);
+    const result = EventAdapter.serializeCreate(event);
     this.validator.dataValidate(result);
     const found = await this.repository.readOne({ title: event.title, producer: payload.username });
     this.validator.existing(found);
@@ -71,7 +71,6 @@ export default class EventCases {
   }
 
   private async readAll(query: any): Promise<Array<IEvent>> {
-    console.log(query);
     const found = await this.repository.read({ query, private: false });
     return found;
   }
@@ -110,5 +109,20 @@ export default class EventCases {
       default:
         return this.readAll(query);
     }
+  }
+
+  public async me(username: string): Promise<Array<IEvent>> {
+    const found = await this.repository.read({ producer: username });
+    return found;
+  }
+  
+  public async soldTickets(buy: IBuyTicket): Promise<ISale> {
+    const event = await this.repository.readOne({ title: buy.eventTitle }) as IEvent;
+    this.validator.found(event);
+    this.validator.saleValidate(buy);
+    this.validator.saleQuantityValidate(buy, event);
+    this.validator.saleDateValidate(buy, event);
+    await this.repository.soldTickets(buy);
+    return EventAdapter.serializeSeller(event, buy);
   }
 }
