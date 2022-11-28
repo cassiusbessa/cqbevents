@@ -9,6 +9,6 @@ const addressSchema = new Schema<IAddress>({
   street: { type: String, required: true },
   number: { type: Number, required: true },
   complement: { type: String, required: false },
-}, { versionKey: false });
+}, { versionKey: false, _id: false });
 
 export default addressSchema;
