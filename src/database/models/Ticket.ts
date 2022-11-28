@@ -9,6 +9,6 @@ const ticketSchema = new Schema<ITicket>({
   quantity: { type: Number, required: true },
   solds: { type: Number, required: false },
   description: { type: String, required: false },
-}, { versionKey: false });
+}, { versionKey: false, _id: false });
 
 export default ticketSchema;
