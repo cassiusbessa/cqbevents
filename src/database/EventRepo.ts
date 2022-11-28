@@ -60,14 +60,13 @@ export default class EventRepo extends Repository<IEvent, IEvent> {
     return found;
   }
 
-  public async attractionsNameSearch(name: string): Promise<Array<IEvent>> {
-    const myRegex = new RegExp(name, 'i');
+  public async attractionsNameSearch(title: string): Promise<Array<IEvent>> {
+    const myRegex = new RegExp(title, 'i');
     const found = await this.model.find({ 
         $and: [
           { attractions: { $elemMatch: { name: myRegex } } },
           { attractions: { $elemMatch: { endDate: { $gte: Date.now() } } } },
-        ],
-        // attractions: { $elemMatch: { name: myRegex }, endDate: { $gte: Date.now() } },         
+        ],       
         private: false, 
       });
     return found;

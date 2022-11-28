@@ -26,49 +26,89 @@ export default class EventCases {
     return create;
   }
 
-  public async read(query: any): Promise<Array<IEvent>> {
+  private async ticketsDateSearch(date: string): Promise<Array<IEvent>> {
+    const found = await this.repository.ticketsDateSearch(date);
+    return found;
+  }
+
+  private async ticketsPriceSearch(price: number): Promise<Array<IEvent>> {
+    const found = await this.repository.ticketsPriceSearch(price);
+    return found;
+  }
+
+  public async getTickets(query: any): Promise<Array<IEvent>> {
+    const key = Object.keys(query)[0];
+    switch (key) {
+      case 'date':
+        return this.ticketsDateSearch(query[key]);        
+      case 'price':
+        return this.ticketsPriceSearch(query[key]);
+      default:
+        return [];
+    }
+  }
+
+  private async attractionsDateSearch(date: string): Promise<Array<IEvent>> {
+    const found = await this.repository.attractionsDateSearch(date);
+    return found;
+  }
+
+  private async attractionsNameSearch(name: string): Promise<Array<IEvent>> {
+    const found = await this.repository.attractionsNameSearch(name);
+    return found;
+  }
+
+  public async getAttractions(query: any): Promise<Array<IEvent>> {
+    const key = Object.keys(query)[0];
+    switch (key) {
+      case 'date':
+        return this.attractionsDateSearch(query[key]);
+      case 'title':
+        return this.attractionsNameSearch(query[key]);
+      default:
+        return [];
+    }
+  }
+
+  private async readAll(query: any): Promise<Array<IEvent>> {
     console.log(query);
     const found = await this.repository.read({ query, private: false });
     return found;
   }
 
-  public async ticketsDateSearch(date: string): Promise<Array<IEvent>> {
-    const found = await this.repository.ticketsDateSearch(date);
-    return found;
-  }
-
-  public async ticketsPriceSearch(price: number): Promise<Array<IEvent>> {
-    const found = await this.repository.ticketsPriceSearch(price);
-    return found;
-  }
-
-  public async attractionsDateSearch(date: string): Promise<Array<IEvent>> {
-    const found = await this.repository.attractionsDateSearch(date);
-    return found;
-  }
-
-  public async attractionsNameSearch(name: string): Promise<Array<IEvent>> {
-    const found = await this.repository.attractionsNameSearch(name);
-    return found;
-  }
-
-  public async genreSearch(genre: string): Promise<Array<IEvent>> {
+  private async genreSearch(genre: string): Promise<Array<IEvent>> {
     const found = await this.repository.genreSearch(genre);
     return found;
   }
 
-  public async producerSearch(producer: string): Promise<Array<IEvent>> {
+  private async producerSearch(producer: string): Promise<Array<IEvent>> {
     const found = await this.repository.producerSearch(producer);
     return found;
   }
 
-  public async titleSearch(title: string): Promise<Array<IEvent>> {
+  private async titleSearch(title: string): Promise<Array<IEvent>> {
     const found = await this.repository.titleSearch(title);
     return found;
   }
 
-  public async localSearch(local: string): Promise<Array<IEvent>> {
+  private async localSearch(local: string): Promise<Array<IEvent>> {
     const found = await this.repository.localSearch(local);
     return found;
+  }
+
+  public async read(query: any): Promise<Array<IEvent>> {
+    const key = Object.keys(query)[0];
+    switch (key) {
+      case 'genre':
+        return this.genreSearch(query[key]);
+      case 'producer':
+        return this.producerSearch(query[key]);
+      case 'title':
+        return this.titleSearch(query[key]);
+      case 'local':
+        return this.localSearch(query[key]);
+      default:
+        return this.readAll(query);
+    }
   }
 }
