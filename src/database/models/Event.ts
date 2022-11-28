@@ -5,7 +5,7 @@ import { attractionSchema, addressSchema, ticketSchema } from '.';
 const eventSchema = new Schema<IEvent>({
   title: { type: String, required: true },
   producer: { type: String, required: true },
-  genre: { type: [String], required: true },
+  genre: [{ type: String, required: true }],
   attractions: { type: [attractionSchema], required: true },
   tickets: { type: [ticketSchema], required: false },
   address: { type: addressSchema, required: true },
