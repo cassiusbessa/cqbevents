@@ -1,5 +1,5 @@
 import { SomeZodObject } from 'zod';
-import { IBuyTicket, IBuyTicketZodSchema } from '../../interfaces/ITicket';
+import { IBuyTicket } from '../../interfaces/ITicket';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable class-methods-use-this */
 import { Validator } from '..';
@@ -38,7 +38,7 @@ export default class EventValidator extends Validator<IEvent, IEventUpdate> {
       if (ticket.startDate < acc) {
         return ticket.startDate;
       }
-      return acc;
+      return acc.startDate;
     });
   }
 
@@ -53,7 +53,6 @@ export default class EventValidator extends Validator<IEvent, IEventUpdate> {
 
   private saleAndAttractionDate(event: IEvent) {
     const firstSaleDate = this.firstSaleDate(event) as any;
-    // console.log('>>>>>>>', firstSaleDate.startDate.getTimezoneOffset(), new Date(Date.now()).getTimezoneOffset());
     const firstAtractionDate = this.firstAtractionDate(event) as any;
     if (firstSaleDate > firstAtractionDate) {
       throw new CustomError(
@@ -62,11 +61,11 @@ export default class EventValidator extends Validator<IEvent, IEventUpdate> {
       );
     }
 
-    if (firstSaleDate.startDate.getTimezoneOffset() < new Date(Date.now()).getTimezoneOffset()) {
+    if (firstSaleDate.getTimezoneOffset() < new Date(Date.now()).getTimezoneOffset()) {
       throw new CustomError('Sale Start date must be after now', httpStatusCode.BAD_REQUEST);
     }
 
-    if (firstAtractionDate.startDate.getTimezoneOffset() 
+    if (firstAtractionDate.getTimezoneOffset() 
       < new Date(Date.now()).getTimezoneOffset()) {
       throw new CustomError('Attraction Start date must be after now', httpStatusCode.BAD_REQUEST);
     }
