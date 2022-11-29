@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Repository from './Repository';
 import { IBuyTicket, IEvent } from '../interfaces';
 import { Event } from '../database/models';
