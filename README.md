@@ -3,8 +3,36 @@
 
 MB Labs Events é uma aplicação back-end com o objetivo de permitir a empresas gerir eventos e permitir que os usuários busquem eventos e comprem ingressos para os mesmos.
 
+## Documentação
 
+ - [Acesse](https://documenter.getpostman.com/view/23488574/2s8YszMpQs)
+ 
+ 
+## Rodando localmente
 
+Clone o projeto
+
+```bash
+  git clone git@github.com:cassiusbessa/mbevents.git
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd mbevents
+```
+
+Suba o DockerCompose
+
+```bash
+  docker-compose up -d --build
+```
+
+Projeto pronto para uso
+
+```bash
+  Aguarde alguns segundos para o servidor rodar. O projeto estará pronto para uso.
+```  
 
 ## Funcionalidades
 
