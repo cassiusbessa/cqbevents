@@ -14,7 +14,6 @@ class Repository<T, U> implements IRepository<T, U> {
   }
 
   public async read(where: any):Promise<Array<T>> {
-    console.log(where);
     return this.model.find(where);
   }
 

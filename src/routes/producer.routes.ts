@@ -8,6 +8,6 @@ producerRoutes.post('/', producerController.create);
 producerRoutes.post('/login', producerController.login);
 producerRoutes.put('/', authMid.validateToken, producerController.update);
 producerRoutes.delete('/', authMid.validateToken, producerController.delete);
-producerRoutes.get('/', authMid.validateToken, producerController.read);
+producerRoutes.get('/', authMid.validateToken, producerController.readOne);
 
 export default producerRoutes;

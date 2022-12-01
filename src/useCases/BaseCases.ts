@@ -18,7 +18,7 @@ export default class BaseCases<T, U> {
   }
 
   public async readOne(where: any): Promise<T | null> {
-    const entity = await this.repository.readOne(where);
+    const entity = await this.repository.readOne({ where });
     this.validator.found(entity);
     return entity;
   }
