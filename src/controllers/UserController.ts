@@ -29,7 +29,7 @@ export default class UserController extends BaseController<IProducer, IProducerU
 
   public readOne = CtrlWrapper(async (req: Request, res: Response) => {
     const { id } = req.body.user;
-    const result = await this.useCase.readOne(id);
-    return res.status(httpStatusCode.OK).json(result);
+    const { _id, email, username } = await this.useCase.readOne(id) as IProducer;
+    return res.status(httpStatusCode.OK).json({ _id, email, username });
   });
 }
