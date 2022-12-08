@@ -12,7 +12,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/MBEvents
+      - MONGO_URI=mongodb://mongodb:27017/CQBEvents
       - PORT=3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
@@ -29,4 +29,4 @@ services:
       - 27017:27017
 networks:
   default:
-    name: mbevents
+    name: CQBEvents
